@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2011, 2012, 2013, 2014 The Regents of the University of
+ Copyright (c) 2011 - 2016 The Regents of the University of
  California (Regents). All Rights Reserved.  Redistribution and use in
  source and binary forms, with or without modification, are permitted
  provided that the following conditions are met:
@@ -120,7 +120,15 @@ object Node {
 //        ChiselError.warning("lshWidthOf: child width not set - " + m.inputs(0))
         Width()
       } else {
-        w0 + n.litValue((1 << w.needWidth)-1).toInt
+        val shiftWidth = {
+          val nWidth = w.needWidth
+          val mWidth = 31
+          if (nWidth > mWidth) {
+//            ChiselError.warning("lshWidthOf: shiftWidth (%d) overflows Int (%d).".format(nWidth, mWidth))
+          }
+          nWidth
+        }
+        w0 + n.litValue((1 << shiftWidth)-1).toInt
       }
     }
   }
