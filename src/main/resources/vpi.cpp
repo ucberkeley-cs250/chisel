@@ -26,7 +26,6 @@ PLI_INT32 init_outs_calltf(PLI_BYTE8 *user_data) {
 
 PLI_INT32 init_sigs_calltf(PLI_BYTE8 *user_data) {
   vpi_api->init_sigs();
-  vpi_api->init_channels();
   return 0;
 }
 
